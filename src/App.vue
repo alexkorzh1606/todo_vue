@@ -13,13 +13,23 @@
                 gradient="to top right, rgba(232,114,57,.7), rgba(2,20,74,.7)"
               ></v-img>
             </template>
-            <v-toolbar-title><h1>ДЕЛА</h1></v-toolbar-title>
+            <v-toolbar-title class="d-flex justify-space-between" style="width: 100%">
+              <!-- <v-row>
+                <v-col> -->
+                  <h1>ДЕЛА</h1>
+                  <!-- </v-col>
+                <v-col> -->
+                  <h2>Дел в списке: {{todoList.length}}</h2>
+                  <!-- </v-col>
+              </v-row> -->
+            </v-toolbar-title>
             <v-spacer></v-spacer>
             <template v-slot:extension>
               <v-tabs align-with-title>
-                <v-tab><router-link to="/">Главная</router-link></v-tab>
-                <v-tab><router-link to="/todo">Дела</router-link></v-tab>
-                <v-tab><router-link to="/about">О разработчике</router-link></v-tab>
+                <v-tab><router-link to="/" class="white--text">Главная</router-link></v-tab>
+                <v-tab><router-link to="/todo" class="white--text">Дела</router-link></v-tab>
+                <v-tab><router-link to="/about" class="white--text">
+                О разработчике</router-link></v-tab>
                 </v-tabs>
               </template>
             </v-app-bar>
@@ -30,6 +40,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'App',
@@ -54,6 +65,11 @@ export default {
     addToList() {
       this.list.push(this.message);
     },
+  },
+  computed: {
+    ...mapGetters([
+      'todoList',
+    ]),
   },
 };
 </script>

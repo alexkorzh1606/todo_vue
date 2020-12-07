@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'TodoItem',
   props: {
@@ -29,6 +31,11 @@ export default {
     deleteItem() {
       this.$emit('delete');
     },
+  },
+  computed: {
+    ...mapGetters([
+      'todoList',
+    ]),
   },
 };
 </script>
